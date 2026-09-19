@@ -1,0 +1,25 @@
+# macOS: метаданные Finder
+.DS_Store
+
+# Xcode: пользовательское состояние (открытые вкладки, брейкпоинты, личные схемы)
+xcuserdata/
+
+# Xcode: продукты сборки
+DerivedData/
+build/
+
+# SwiftPM: кэш и продукты сборки пакетов (swift build / swift test) и служебные файлы Xcode для пакетов
+.build/
+.swiftpm/
+
+# Claude Code: личные разрешения сессии
+.claude/settings.local.json
+
+# design: кэш python-скрипта сборки макетов
+__pycache__/
+
+# Не приложение: в репозитории только Xcode-проект и пакеты
+design/
+docs/
+CLAUDE.md
+.claude/

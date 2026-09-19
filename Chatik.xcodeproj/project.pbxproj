@@ -6,6 +6,10 @@
 	objectVersion = 77;
 	objects = {
 
+/* Begin PBXBuildFile section */
+		6E25E2CD305EEF4000D40B83 /* ChatikCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6E25E2CC305EEF4000D40B83 /* ChatikCore */; };
+/* End PBXBuildFile section */
+
 /* Begin PBXFileReference section */
 		6EF53102305EE15600E4159A /* Chatik.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chatik.app; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -23,6 +27,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E25E2CD305EEF4000D40B83 /* ChatikCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +70,7 @@
 			);
 			name = Chatik;
 			packageProductDependencies = (
+				6E25E2CC305EEF4000D40B83 /* ChatikCore */,
 			);
 			productName = Chatik;
 			productReference = 6EF53102305EE15600E4159A /* Chatik.app */;
@@ -94,6 +100,9 @@
 			);
 			mainGroup = 6EF530F9305EE15600E4159A;
 			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				6E25E2CB305EEF4000D40B83 /* XCLocalSwiftPackageReference "Packages/ChatikCore" */,
+			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6EF53103305EE15600E4159A /* Products */;
 			projectDirPath = "";
@@ -334,6 +343,20 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		6E25E2CB305EEF4000D40B83 /* XCLocalSwiftPackageReference "Packages/ChatikCore" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/ChatikCore;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		6E25E2CC305EEF4000D40B83 /* ChatikCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = ChatikCore;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 6EF530FA305EE15600E4159A /* Project object */;
 }

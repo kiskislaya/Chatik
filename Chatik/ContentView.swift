@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import ChatikCore
 
 struct ContentView: View {
     var body: some View {

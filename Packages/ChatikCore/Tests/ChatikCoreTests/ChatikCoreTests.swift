@@ -1,8 +1,23 @@
 import Testing
-@testable import ChatikCore
+import Foundation
+import ChatikCore
 
-@Test func example() async throws {
-    // Write your test here and use APIs like `#expect(...)` to check expected conditions.
-    // Swift Testing Documentation
-    // https://developer.apple.com/documentation/testing
+@Test func createAuthorAndChatMessage() {
+    let author = Author(login: "login", displayName: "name")
+    let now = Date()
+    let chatMessage = ChatMessage(
+        id: "id",
+        channel: "channel",
+        timestamp: now,
+        author: author,
+        text:  "text"
+    )
+    #expect(author.login == "login")
+    #expect(author.displayName == "name")
+    #expect(chatMessage.text == "text")
+    #expect(chatMessage.author?.login == "login")
+    #expect(chatMessage.author?.displayName == "name")
+    #expect(chatMessage.channel == "channel")
+    #expect(chatMessage.timestamp == now)
+    #expect(chatMessage.id == "id")
 }

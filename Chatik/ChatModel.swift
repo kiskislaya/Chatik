@@ -46,21 +46,19 @@ final class ChatModel {
     func disconnect() {
         readTask?.cancel()
         flushTask?.cancel()
+        let connection = self.connection
         Task {
             await connection?.disconnect()
         }
-        connection = nil
+        self.connection = nil
         readTask = nil
         flushTask = nil
     }
     
     private func flush() {
-        if pending.isEmpty {
-            
-        } else {
-            messages.append(contentsOf: pending)
-            pending.removeAll()
-        }
+        guard !pending.isEmpty else { return }
+        messages.append(contentsOf: pending)
+        pending.removeAll()
         if messages.count > limit {
             messages.removeFirst(messages.count - limit)
         }

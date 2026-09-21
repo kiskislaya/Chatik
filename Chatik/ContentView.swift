@@ -7,6 +7,7 @@
 
 import SwiftUI
 import ChatikCore
+import TwitchIRC
 
 struct ContentView: View {
     var body: some View {

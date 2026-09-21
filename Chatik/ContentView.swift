@@ -18,6 +18,18 @@ struct ContentView: View {
             Text("Hello, world!")
         }
         .padding()
+        .task {
+            let connection = IRCConnection(transport: WebSocketTransport(url: WebSocketTransport.twitchURL))
+            do {
+                let stream = try await connection.connect(nick: IRCConnection.anonymousNick())
+                try await connection.join("ironmouse")
+                for await message in stream {
+                    print(message.author?.login ?? "?", message.text)
+                }
+            } catch {
+                print("error: ", error)
+            }
+        }
     }
 }
 

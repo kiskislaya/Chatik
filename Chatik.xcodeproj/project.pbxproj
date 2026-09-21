@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		6E25E2CD305EEF4000D40B83 /* ChatikCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6E25E2CC305EEF4000D40B83 /* ChatikCore */; };
+		6E25E2D030614D6C00D40B83 /* TwitchIRC in Frameworks */ = {isa = PBXBuildFile; productRef = 6E25E2CF30614D6C00D40B83 /* TwitchIRC */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +28,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6E25E2D030614D6C00D40B83 /* TwitchIRC in Frameworks */,
 				6E25E2CD305EEF4000D40B83 /* ChatikCore in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -71,6 +73,7 @@
 			name = Chatik;
 			packageProductDependencies = (
 				6E25E2CC305EEF4000D40B83 /* ChatikCore */,
+				6E25E2CF30614D6C00D40B83 /* TwitchIRC */,
 			);
 			productName = Chatik;
 			productReference = 6EF53102305EE15600E4159A /* Chatik.app */;
@@ -102,6 +105,7 @@
 			minimizedProjectReferenceProxies = 1;
 			packageReferences = (
 				6E25E2CB305EEF4000D40B83 /* XCLocalSwiftPackageReference "Packages/ChatikCore" */,
+				6E25E2CE30614D6C00D40B83 /* XCLocalSwiftPackageReference "Packages/TwitchIRC" */,
 			);
 			preferredProjectObjectVersion = 77;
 			productRefGroup = 6EF53103305EE15600E4159A /* Products */;
@@ -349,12 +353,20 @@
 			isa = XCLocalSwiftPackageReference;
 			relativePath = Packages/ChatikCore;
 		};
+		6E25E2CE30614D6C00D40B83 /* XCLocalSwiftPackageReference "Packages/TwitchIRC" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = Packages/TwitchIRC;
+		};
 /* End XCLocalSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
 		6E25E2CC305EEF4000D40B83 /* ChatikCore */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = ChatikCore;
+		};
+		6E25E2CF30614D6C00D40B83 /* TwitchIRC */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = TwitchIRC;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -10,26 +10,26 @@ import ChatikCore
 import TwitchIRC
 
 struct ContentView: View {
+    @State private var model = ChatModel()
+    @State private var channel = "ironmouse"
+    
     var body: some View {
         VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
-        }
-        .padding()
-        .task {
-            let connection = IRCConnection(transport: WebSocketTransport(url: WebSocketTransport.twitchURL))
-            do {
-                let stream = try await connection.connect(nick: IRCConnection.anonymousNick())
-                try await connection.join("ironmouse")
-                for await message in stream {
-                    print(message.author?.login ?? "?", message.text)
+            HStack {
+                TextField("Channel", text: $channel)
+                Button("Sign in") {
+                    model.connect(to: channel)
                 }
-            } catch {
-                print("error: ", error)
+            }
+            List(model.messages) { message in
+                HStack(alignment: .top) {
+                    Text(message.author?.displayName ?? "").bold()
+                    Text(message.text)
+                }
             }
         }
+        .padding()
+        
     }
 }
 

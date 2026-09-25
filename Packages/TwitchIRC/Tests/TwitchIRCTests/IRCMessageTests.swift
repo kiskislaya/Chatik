@@ -21,9 +21,10 @@ import Testing
     
     #expect(m1.tags["system-msg"] == "ronni has subscribed for 6 months!")
     
-    let m2 = try IRCMessage(parsing: #"@note=a\:b\\c\rd\ne :tmi.twitch.tv NOTICE #dallas :ok"#)
+    let m2 = try IRCMessage(parsing: #"@note=a\:b\\c\rd\ne;dash=x-y\sz :tmi.twitch.tv NOTICE #dallas :ok"#)
     
     #expect(m2.tags["note"] == "a;b\\c\rd\ne")
+    #expect(m2.tags["dash"] == "x-y z")
 }
 
 @Test func parsesTags() throws {

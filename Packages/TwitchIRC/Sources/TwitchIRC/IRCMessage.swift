@@ -12,6 +12,7 @@ struct IRCMessage: Sendable, Equatable {
     let command: String
     let params: [String]
     let trailing: String?
+    let tags: [String: String]
     
     init(parsing line: String) throws {
         var rest = line[...]
@@ -50,6 +51,7 @@ struct IRCMessage: Sendable, Equatable {
         self.command = command
         self.params = params
         self.trailing = trailing
+        self.tags = [:]
     }
 }
 

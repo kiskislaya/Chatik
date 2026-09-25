@@ -9,10 +9,14 @@ import Foundation
 public struct Author: Sendable, Hashable {
     public let login: String
     public let displayName: String
+    public let userID: String?
+    public let color: RGB?
     
-    public init(login: String, displayName: String) {
+    public init(login: String, displayName: String, userID: String? = nil, color: RGB? = nil) {
         self.login = login
         self.displayName = displayName
+        self.userID = userID
+        self.color = color
     }
 }
 

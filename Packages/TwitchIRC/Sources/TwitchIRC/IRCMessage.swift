@@ -20,9 +20,22 @@ struct IRCMessage: Sendable, Equatable {
         let command: String
         var params: [String] = []
         var trailing: String?
+        let tags: [String: String]
+        
         guard !rest.isEmpty else {
             throw IRCParseError.emptyLine
         }
+        
+        if rest.first == "@" {
+            rest = rest.dropFirst()
+            guard let raw = takeWord(from: &rest) else {
+                throw IRCParseError.missingCommand
+            }
+            tags = parseTags(raw)
+        } else {
+            tags = [:]
+        }
+        
         if rest.first == ":" {
             rest = rest.dropFirst()
             guard let pref = takeWord(from: &rest) else {
@@ -32,6 +45,7 @@ struct IRCMessage: Sendable, Equatable {
         } else {
             prefix = nil
         }
+        
         guard let cmd = takeWord(from: &rest) else {
             throw IRCParseError.missingCommand
         }
@@ -51,7 +65,7 @@ struct IRCMessage: Sendable, Equatable {
         self.command = command
         self.params = params
         self.trailing = trailing
-        self.tags = [:]
+        self.tags = tags
     }
 }
 
@@ -74,4 +88,55 @@ private func takeWord(from rest: inout Substring) -> String? {
     let after = rest.index(after: space)
     rest = rest[after...]
     return String(word)
+}
+
+private func parseTags(_ raw: String) -> [String: String] {
+    let raws = raw.split(separator: ";")
+    var result: [String: String] = [:]
+    
+    for r in raws {
+        let pair = r.split(separator: "=", maxSplits: 1)
+        if pair.count == 2 {
+            result[String(pair[0])] = unescapeTagValue(pair[1])
+        } else if pair.count == 1 {
+            result[String(pair[0])] = ""
+        }
+    }
+    
+    return result
+}
+
+private func unescapeTagValue(_ raw: Substring) -> String {
+    let scalars = raw.unicodeScalars
+    guard scalars.contains(#"\"#) else {
+        return String(raw)
+    }
+    
+    var flag = false
+    var out = String.UnicodeScalarView()
+    for scalar in scalars {
+        if flag {
+            switch scalar {
+            case ":":
+                out.append(";")
+            case "s":
+                out.append(" ")
+            case #"\"#:
+                out.append(#"\"#)
+            case "r":
+                out.append("\r")
+            case "n":
+                out.append("\n")
+            default:
+                out.append(scalar)
+            }
+            flag = false
+        } else if scalar == #"\"# {
+            flag = true
+        } else {
+            out.append(scalar)
+        }
+    }
+    
+    return String(out)
 }
